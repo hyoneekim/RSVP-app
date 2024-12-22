@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import 'add-to-calendar-button';
 
 // Main App Component
@@ -20,7 +21,7 @@ function App() {
 function Header() {
   return (
     <header>
-      <h1>Welcome to Elias's 1st Birthday Party!</h1>
+      <h1>You are invited to Elias's 1st Birthday Party!</h1>
     </header>
   );
 }
@@ -29,7 +30,9 @@ function Header() {
 function Introduction() {
   return (
     <section>
-      <p>We are excited to invite you to our event! Please fill out the form below to let us know who will be attending.</p>
+      <p>We are excited to invite you to our boy's first ever birthday party!</p>
+      <p><strong>09.02.2025 13pm, Bodomin kartano</strong></p>
+      <p>Please fill out the form below to let us know who will be attending.</p>
     </section>
   );
 }
@@ -64,6 +67,7 @@ function Form() {
   
       if (response.ok) {
         console.log('Guest added successfully');
+        alert("Thank you for letting us know! See you at the party :)")
       } else {
         console.error('Error adding guest');
       }
