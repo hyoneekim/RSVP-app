@@ -1,7 +1,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
+header {
+  padding: auto;
+  margin-top: 10px;
+}
+
+
 body {
+    text-align: center;
+    margin: auto;
     font-family: "Sour Gummy", serif;
     font-optical-sizing: auto;
     font-weight: 100;
@@ -9,9 +17,88 @@ body {
     font-variation-settings:
       "wdth" 100;
     background-color: #fef9e7;
+    font-size: 20px;
+    line-height: 24px;
+    
 }
 
-.formUnit {
-    background-color: #f9e79f;
 
+.map {
+  width: 80%;
+  height: 400px;
+margin: auto;
+margin-bottom: 30px;
+}
+
+button {
+
+    width: 50px;
+    padding: 2px;
+    margin: auto;
+    font-weight: 800;
+    text-align: center;
+    line-height: 80%;
+    color: #fff;
+    border-radius: 5px;
+    border: 0;
+    transition: all 0.2s ;
+    background: #FFAA40;
+  }
+
+
+
+  .btn-add:hover {
+    background: #FF8E00;
+  }
+
+
+  .btn-remove:hover {
+    background: #FF8E00;
+  }
+
+  .btn-submit:hover {
+    background: #FF8E00;
+  }
+
+  .form-inline {
+    position: relative;
+    z-index: 1;
+}
+
+.form-container,.afterparty-container,.requirements-container {
+  margin: auto;
+  padding: 20px;
+  background-color: #f9e79f;
+  width: 80%;
+    position: relative;
+}
+
+.btn-remove {
+  display: block;
+  float: right;
+margin-right: 3px;
+    z-index: 0;
+
+}
+
+.btn-add {
+  display: block;
+  float: right;
+margin-left: 3px;
+}
+
+.btn-submit {
+
+  float: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  line-height: 300%;
+}
+
+.btn-calender {
+
+  width: 300px;
+  line-height: 300%;
+  margin-bottom: 20px;
 }

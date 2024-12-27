@@ -20,36 +20,11 @@ const MONGO_DATA_SOURCE = 'Cluster0';
 
 // API Endpoints
 
-// Fetch Guest Data (GET)
-app.get('/api/guests', async (req, res) => {
-  try {
-    const response = await axios.post(`${MONGO_ENDPOINT}/find`, {
-      collection: MONGO_COLLECTION,
-      database: MONGO_DB,
-      dataSource: MONGO_DATA_SOURCE,
-      projection: {
-        name: 1,
-        age: 1,
-        allergies: 1,
-        aftercheck: 1,
-      },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': MONGO_API_KEY,
-      }
-    });
-
-    res.json(response.data.documents);
-  } catch (error) {
-    console.error('Error fetching data from API:', error);
-    res.status(500).json({ message: 'Failed to fetch data from API' });
-  }
-});
 
 // Save Guest Data (POST)
 app.post('/api/guests', async (req, res) => {
   const guestData = req.body;
+  console.log('Received guest data:', guestData);  // Log received data
 
   try {
     const response = await axios.post(`${MONGO_ENDPOINT}/insertOne`, {
