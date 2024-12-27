@@ -7,10 +7,14 @@ require('dotenv').config();
 const app = express();
 const PORT = 3001;
 
-// Middleware
-app.use(cors({
-  origin: '*',
-}));
+const corsOptions = {
+  origin: ['https://your-frontend-domain.com', 'http://localhost:3000'], // Add your frontend domain
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 // MongoDB Data API configuration
