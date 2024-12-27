@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import 'add-to-calendar-button';
-require('dotenv').config();
 
 // Main App Component
 function App() {
