@@ -78,7 +78,8 @@ function Form() {
     console.log('Form Data:', formData); // Ensure all fields are logged correctly
 
     try {
-      const response = await fetch('https://guestlist-app.onrender.com/', {
+      const API_URL = "http://192.168.1.110:3001";
+      const response = await fetch(`${API_URL}/api/guests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

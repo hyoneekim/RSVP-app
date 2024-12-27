@@ -8,7 +8,9 @@ const app = express();
 const PORT = 3001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+}));
 app.use(bodyParser.json());
 
 // MongoDB Data API configuration
