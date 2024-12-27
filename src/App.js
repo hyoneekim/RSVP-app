@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import 'add-to-calendar-button';
+require('dotenv').config();
 
 // Main App Component
 function App() {
@@ -78,14 +79,14 @@ function Form() {
     console.log('Form Data:', formData); // Ensure all fields are logged correctly
 
     try {
-      const API_URL = "https://guestlist-app.onrender.com/api/guests" || 'http://localhost:3001';
-      const response = await fetch(`${API_URL}/api/guests`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData), // Send all data, including afterparty and requirements
-      });
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const response = await fetch(`${API_URL}/api/guests`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(formData),
+});
 
       if (response.ok) {
         console.log('Guest added successfully');
@@ -133,14 +134,14 @@ function Form() {
                 <label>
                   How old is the child?{" "}
                   <input
-                    type="number"
-                    name="childAge"
-                    value={form.childAge}
-                    onChange={(e) => handleChange(index, "childAge", e.target.value)}
-                    min="1"
-                    max="17"
-                    required
-                  />
+  type="number"
+  name="childAge"
+  value={form.childAge}
+  onChange={(e) => handleChange(index, "childAge", e.target.value)}
+  min="0"
+  max="17"
+  required={form.age === "child"}
+/>
                 </label>
               </div>
             )}
