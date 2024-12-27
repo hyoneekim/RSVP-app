@@ -78,7 +78,7 @@ function Form() {
     console.log('Form Data:', formData); // Ensure all fields are logged correctly
 
     try {
-      const response = await fetch('http://localhost:3001/api/guests', {
+      const response = await fetch('https://guestlist-app.onrender.com/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ function Calendar() {
         startDate="2025-02-09"
         endDate="2025-02-09"
         startTime="13:00"
-        endTime="17:00"
+        endTime="15:30"
         size="5"
         buttonStyle="date"
         lightMode="bodyScheme"
