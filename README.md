@@ -1,6 +1,6 @@
 # Elias's 1st Birthday Party RSVP App
 
-This app was created for a special event: Elias's 1st birthday party! It serves as a real-world application designed to streamline the RSVP process for our guests.
+This app was created for a special event: Elias's 1st birthday party! It serves as a real-world application designed to streamline the RSVP process for our guests. You can check it out at https://guestlist-app.onrender.com/ as well!
 
 ### Features
 
