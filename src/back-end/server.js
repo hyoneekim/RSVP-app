@@ -8,7 +8,7 @@ const app = express();
 const PORT = 3001;
 
 const corsOptions = {
-  origin: ['https://guestlist-app.onrender.com', 'http://localhost:3000'],
+  origin: ['https://guestlist-app-frontend.onrender.com/', 'http://localhost:3000'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 };
