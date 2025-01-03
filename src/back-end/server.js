@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // MongoDB Data API configuration
-const MONGO_API_KEY = process.env.MONGO_API_KEY; // Store in .env file
+const MONGO_API_KEY = process.env.REACT_APP_MONGO_API_KEY; // Store in .env file
 const MONGO_ENDPOINT = 'https://eu-central-1.aws.data.mongodb-api.com/app/data-kvzdxoj/endpoint/data/v1/action';
 const MONGO_DB = 'guests';
 const MONGO_COLLECTION = 'guests';
