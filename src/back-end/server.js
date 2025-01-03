@@ -1,21 +1,11 @@
 const express = require('express');
-const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const PORT = 3001;
-
-const corsOptions = {
-  origin: ['https://guestlist-app-frontend.onrender.com/', 'http://localhost:3000'],
-  methods: ['GET', 'POST','OPTIONS'],
-  allowedHeaders: ['Content-Type'],
-};
-
-app.use(cors(corsOptions));
-
-app.use(bodyParser.json());
+const PORT = process.env.PORT || 3001;
 
 // MongoDB Data API configuration
 const MONGO_API_KEY = process.env.MONGO_API_KEY; // Store in .env file
@@ -24,9 +14,11 @@ const MONGO_DB = 'guests';
 const MONGO_COLLECTION = 'guests';
 const MONGO_DATA_SOURCE = 'Cluster0';
 
+// Middleware
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'build'))); // Serve React static files
+
 // API Endpoints
-
-
 // Save Guest Data (POST)
 app.post('/api/guests', async (req, res) => {
   const guestData = req.body;
@@ -52,7 +44,10 @@ app.post('/api/guests', async (req, res) => {
   }
 });
 
-app.options('*', cors());
+// Serve React frontend for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // Start Server
 app.listen(PORT, () => {
