@@ -28,23 +28,18 @@ app.use(express.static(path.join(__dirname, 'build'))); // Serve React static fi
 // API Endpoints
 // Save Guest Data (POST)
 app.post('/api/guests', async (req, res) => {
-  const guestData = req.body;
-  console.log('1. Making request to MongoDB Data API');
-  console.log('2. Request data:', {
-    endpoint: MONGO_ENDPOINT,
-    collection: MONGO_COLLECTION,
-    database: MONGO_DB,
-    dataSource: MONGO_DATA_SOURCE,
-    apiKeyExists: !!MONGO_API_KEY,
-    data: guestData
-  });
-
+  
   try {
     const response = await axios.post(`${MONGO_ENDPOINT}/insertOne`, {
-      collection: MONGO_COLLECTION,
-      database: MONGO_DB,
-      dataSource: MONGO_DATA_SOURCE,
-      document: guestData,
+      "collection": MONGO_COLLECTION,
+      "database": MONGO_DB,
+      "dataSource": MONGO_DATA_SOURCE,
+      "projection": {
+        "_id": 1,
+        "guests": 1,
+        "afterparty": 1,
+        "requirements": 1
+      },
     }, {
       headers: {
         'Content-Type': 'application/json',
