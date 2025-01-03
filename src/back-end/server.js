@@ -1,40 +1,30 @@
 const express = require('express');
 const cors = require('cors');
-const axios = require('axios');
 const bodyParser = require('body-parser');
-const path = require('path');  // Ensure 'path' is imported
+const path = require('path');
+const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-const corsOptions = {
-  origin: '*',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'],
-};
-
-app.use(cors(corsOptions));
+// Middleware
+app.use(cors({ origin: '*' })); // Allow all origins; restrict in production if necessary
 app.use(bodyParser.json());
 
-// MongoDB Data API configuration
-const MONGO_API_KEY = process.env.REACT_APP_MONGO_API_KEY; // Store in .env file
+// MongoDB Data API Configuration
+const MONGO_API_KEY = process.env.MONGO_API_KEY;
 const MONGO_ENDPOINT = 'https://eu-central-1.aws.data.mongodb-api.com/app/data-kvzdxoj/endpoint/data/v1';
 const MONGO_DB = 'guests';
 const MONGO_COLLECTION = 'guests';
 const MONGO_DATA_SOURCE = 'Cluster0';
 
-// API Endpoints
-
-// Test GET request to check if API is working
-app.get('/api/guests', (req, res) => {
-  res.json({ message: 'API is working correctly!' });
-});
+// API Routes
 
 // Save Guest Data (POST)
 app.post('/api/guests', async (req, res) => {
   const guestData = req.body;
-  console.log('Received guest data:', guestData);  // Log received data
+  console.log('Received guest data:', guestData);
 
   try {
     const response = await axios.post(`${MONGO_ENDPOINT}/insertOne`, {
@@ -51,22 +41,23 @@ app.post('/api/guests', async (req, res) => {
 
     res.status(201).json({ message: 'Guest added successfully', id: response.data.insertedId });
   } catch (error) {
-    console.error('Error saving data to API:', error);
-    res.status(500).json({ message: 'Failed to save data to API' });
+    console.error('Error saving data to MongoDB:', error.response ? error.response.data : error);
+    res.status(500).json({ message: 'Failed to save data to MongoDB' });
   }
 });
 
-// Serve the React build folder in production
+// Serve React App in Production
 if (process.env.NODE_ENV === 'production') {
+  // Serve the static files from the React app
   app.use(express.static(path.join(__dirname, 'client/build')));
 
-  // All other requests will return the React app
+  // Handle React routing, return all requests to React app
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
 
-// Start Server
+// Start the Server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
