@@ -9,7 +9,7 @@ const PORT = 3001;
 
 const corsOptions = {
   origin: ['https://guestlist-app-frontend.onrender.com/', 'http://localhost:3000'],
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST','OPTIONS'],
   allowedHeaders: ['Content-Type'],
 };
 
@@ -51,6 +51,8 @@ app.post('/api/guests', async (req, res) => {
     res.status(500).json({ message: 'Failed to save data to API' });
   }
 });
+
+app.options('*', cors());
 
 // Start Server
 app.listen(PORT, () => {
