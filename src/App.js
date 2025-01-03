@@ -91,7 +91,6 @@ function Form() {
       if (response.ok) {
         alert("Thank you for letting us know! See you at the party :)");
         setSubmissionStatus("Thank you for letting us know, see you at the party!");
-        console.log('Guest added successfully:', response);
       } else {
         console.error('Error adding guest');
       }
