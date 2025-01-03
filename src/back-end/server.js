@@ -28,7 +28,7 @@ const MONGO_DATA_SOURCE = 'Cluster0';
 
 
 // Save Guest Data (POST)
-app.post('/api/guests', async (req, res) => {
+app.post('/', async (req, res) => {
   const guestData = req.body;
   console.log('Received guest data:', guestData);  // Log received data
 
