@@ -81,6 +81,7 @@ function Form() {
       const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 const response = await fetch(`${API_URL}/api/guests`, {
   method: 'POST',
+  mode: 'no-cors',
   headers: {
     'Content-Type': 'application/json',
   },
