@@ -9,7 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors({ origin: '*' })); // Allow all origins; restrict in production if necessary
+app.use(cors({ 
+  origin: 'https://guestlist-app.onrender.com',
+  credentials: true
+}));
+
 app.use(bodyParser.json());
 
 // MongoDB Data API Configuration
