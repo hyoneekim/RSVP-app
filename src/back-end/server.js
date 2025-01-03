@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const path = require('path');  // Ensure 'path' is imported
 require('dotenv').config();
 
 const app = express();
@@ -14,7 +15,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 
 // MongoDB Data API configuration
@@ -26,6 +26,10 @@ const MONGO_DATA_SOURCE = 'Cluster0';
 
 // API Endpoints
 
+// Test GET request to check if API is working
+app.get('/api/guests', (req, res) => {
+  res.json({ message: 'API is working correctly!' });
+});
 
 // Save Guest Data (POST)
 app.post('/api/guests', async (req, res) => {
