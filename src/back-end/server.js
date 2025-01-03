@@ -8,7 +8,7 @@ const app = express();
 const PORT = 3001;
 
 const corsOptions = {
-  origin: ['https://guestlist-app.onrender.com', 'http://localhost:3000'],
+  origin: '*',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 };
@@ -28,7 +28,7 @@ const MONGO_DATA_SOURCE = 'Cluster0';
 
 
 // Save Guest Data (POST)
-app.post('/', async (req, res) => {
+app.post('/api/guests', async (req, res) => {
   const guestData = req.body;
   console.log('Received guest data:', guestData);  // Log received data
 
@@ -51,6 +51,16 @@ app.post('/', async (req, res) => {
     res.status(500).json({ message: 'Failed to save data to API' });
   }
 });
+
+// Serve the React build folder in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  // All other requests will return the React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
 // Start Server
 app.listen(PORT, () => {

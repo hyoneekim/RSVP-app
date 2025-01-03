@@ -81,7 +81,7 @@ function Form() {
     const formData = { guests: forms, afterparty, requirements };
 
     try {
-      const API_URL = 'https://guestlist-app.onrender.com';
+      const API_URL = 'https://guestlist-app.onrender.com/api/guests';
       const response = await fetch(`${API_URL}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
