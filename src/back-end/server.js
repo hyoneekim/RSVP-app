@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'build'))); // Serve React static fi
 // API Endpoints
 // Save Guest Data (POST)
 app.post('/api/guests', async (req, res) => {
+  const guestData = req.body;  
   try {
     const response = await axios.post(`${MONGO_ENDPOINT}/insertOne`, {
       collection: MONGO_COLLECTION,
