@@ -1,66 +1,55 @@
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
+
+const corsOptions = {
+  origin: ['https://guestlist-app.onrender.com', 'http://localhost:3000'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOptions));
+
+app.use(bodyParser.json());
 
 // MongoDB Data API configuration
-const MONGO_API_KEY = process.env.REACT_APP_MONGO_API_KEY;
+const MONGO_API_KEY = process.env.MONGO_API_KEY; // Store in .env file
 const MONGO_ENDPOINT = 'https://eu-central-1.aws.data.mongodb-api.com/app/data-kvzdxoj/endpoint/data/v1/action';
 const MONGO_DB = 'guests';
 const MONGO_COLLECTION = 'guests';
 const MONGO_DATA_SOURCE = 'Cluster0';
 
-const cors = require('cors');
-app.use(cors({
-  origin: 'https://guestlist-app.onrender.com',
-  methods: ['GET', 'POST'],
-  credentials: true
-}));
-
-// Middleware
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'build'))); // Serve React static files
-
 // API Endpoints
+
+
 // Save Guest Data (POST)
 app.post('/api/guests', async (req, res) => {
-  
+  const guestData = req.body;
+  console.log('Received guest data:', guestData);  // Log received data
+
   try {
     const response = await axios.post(`${MONGO_ENDPOINT}/insertOne`, {
-      "collection": MONGO_COLLECTION,
-      "database": MONGO_DB,
-      "dataSource": MONGO_DATA_SOURCE,
-      "projection": {
-        "_id": 1,
-        "guests": 1,
-        "afterparty": 1,
-        "requirements": 1
-      },
+      collection: MONGO_COLLECTION,
+      database: MONGO_DB,
+      dataSource: MONGO_DATA_SOURCE,
+      document: guestData,
     }, {
       headers: {
         'Content-Type': 'application/json',
         'api-key': MONGO_API_KEY,
       }
     });
-    console.log('3. MongoDB Response:', response.data);
-    res.status(201).json(response.data);
-  } catch (error) {
-    console.error('4. Error:', {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status
-    });
-    res.status(500).json(error.response?.data || error.message);
-  }
-});
 
-// Serve React frontend for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.status(201).json({ message: 'Guest added successfully', id: response.data.insertedId });
+  } catch (error) {
+    console.error('Error saving data to API:', error);
+    res.status(500).json({ message: 'Failed to save data to API' });
+  }
 });
 
 // Start Server
