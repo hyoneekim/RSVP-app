@@ -32,7 +32,7 @@ function Introduction() {
   return (
     <section>
       <p>We are excited to invite you to our boy's first-ever birthday party!</p>
-      <h2><strong>09.02.2025 13pm, Bodomin kartano</strong></h2>
+      <h2><strong>09.02.2025 13:00, Bodomin kartano</strong></h2>
       <p><strong>Please fill out the RSVP form below </strong> to let us know who will be attending.</p>
       <a>Food will be served by the venue, you can check the menu </a>
       <a href='https://bodominkartano.fi/brunssi/' target="_blank" rel="noopener noreferrer">here</a><a> in advance.</a>
@@ -202,7 +202,7 @@ function Calendar() {
         startDate="2025-02-09"
         endDate="2025-02-09"
         startTime="13:00"
-        endTime="15:30"
+        endTime="15:00"
         size="5"
         buttonStyle="date"
         lightMode="bodyScheme"
