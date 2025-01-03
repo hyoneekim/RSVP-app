@@ -81,7 +81,7 @@ function Form() {
     const formData = { guests: forms, afterparty, requirements };
 
     try {
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      const API_URL = 'https://guestlist-app.onrender.com';
       const response = await fetch(`${API_URL}/api/guests`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

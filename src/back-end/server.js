@@ -14,6 +14,13 @@ const MONGO_DB = 'guests';
 const MONGO_COLLECTION = 'guests';
 const MONGO_DATA_SOURCE = 'Cluster0';
 
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://guestlist-app.onrender.com',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+
 // Middleware
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'build'))); // Serve React static files
@@ -21,9 +28,6 @@ app.use(express.static(path.join(__dirname, 'build'))); // Serve React static fi
 // API Endpoints
 // Save Guest Data (POST)
 app.post('/api/guests', async (req, res) => {
-  const guestData = req.body;
-  console.log('Received guest data:', guestData);  // Log received data
-
   try {
     const response = await axios.post(`${MONGO_ENDPOINT}/insertOne`, {
       collection: MONGO_COLLECTION,
@@ -36,11 +40,11 @@ app.post('/api/guests', async (req, res) => {
         'api-key': MONGO_API_KEY,
       }
     });
-
-    res.status(201).json({ message: 'Guest added successfully', id: response.data.insertedId });
+    console.log('MongoDB API Response:', response.data); // Add this
+    res.status(201).json({ message: 'Guest added successfully' });
   } catch (error) {
-    console.error('Error saving data to API:', error);
-    res.status(500).json({ message: 'Failed to save data to API' });
+    console.error('Full error details:', error.response?.data || error); // Enhanced error logging
+    res.status(500).json({ message: 'Failed to save data' });
   }
 });
 
