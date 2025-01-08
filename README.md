@@ -2,6 +2,8 @@
 
 This app was created to celebrate a very special occasion: Elias's 1st birthday! It is a practical, real-world application designed to simplify the RSVP process for our guests. You can explore it live at [RSVP App on Render](https://rsvp-app-e7za.onrender.com/).
 
+Test automation script has been added. You can check the test result below.
+
 ## Features
 
 - **Dynamic Forms**: Guests can effortlessly add or remove participants (adults and children) and provide personalized details like names and ages.
@@ -32,3 +34,4 @@ All the information collected is securely stored in a MongoDB database, enabling
 This app was lovingly crafted to ensure the smooth organization of this milestone event, making the RSVP process as simple and enjoyable as possible.
 
 ![Screenshot](https://github.com/hyoneekim/guestlist-app/blob/main/Screenshot_RSVP_app.png#:~:text=README.md-,Screenshot_RSVP_app,-.png)
+![RobotframeworkTest](https://github.com/hyoneekim/guestlist-app/blob/main/Screenshot 2025-01-08 at 13.06.35.png)
