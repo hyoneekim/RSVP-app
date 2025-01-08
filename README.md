@@ -2,7 +2,7 @@
 
 This app was created to celebrate a very special occasion: Elias's 1st birthday! It is a practical, real-world application designed to simplify the RSVP process for our guests. You can explore it live at [RSVP App on Render](https://rsvp-app-e7za.onrender.com/).
 
-Test automation script has been added. You can check the test result below.
+Robot Framework for test automation script has been added. You can check the details and the test result below.
 
 ## Features
 
@@ -32,6 +32,10 @@ Guests are welcomed by an intuitive interface where they can:
 All the information collected is securely stored in a MongoDB database, enabling easy management and review of RSVP responses.
 
 This app was lovingly crafted to ensure the smooth organization of this milestone event, making the RSVP process as simple and enjoyable as possible.
+
+## Test Automation
+
+Test automation by robot framework has been configured and conducted. It checks if the app fetches/sends data successfully with GET and POST methods. The result is shown in its API form, which enables to follow the test results concisely.
 
 ![Screenshot](https://github.com/hyoneekim/guestlist-app/blob/main/Screenshot_RSVP_app.png#:~:text=README.md-,Screenshot_RSVP_app,-.png)
 ![RobotframeworkTest](https://github.com/hyoneekim/guestlist-app/blob/main/Testauto_result.png)
