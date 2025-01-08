@@ -34,4 +34,4 @@ All the information collected is securely stored in a MongoDB database, enabling
 This app was lovingly crafted to ensure the smooth organization of this milestone event, making the RSVP process as simple and enjoyable as possible.
 
 ![Screenshot](https://github.com/hyoneekim/guestlist-app/blob/main/Screenshot_RSVP_app.png#:~:text=README.md-,Screenshot_RSVP_app,-.png)
-![RobotframeworkTest](https://github.com/hyoneekim/guestlist-app/blob/main/Screenshot 2025-01-08 at 13.06.35.png)
+![RobotframeworkTest](https://github.com/hyoneekim/guestlist-app/blob/main/Testauto_result.png)
